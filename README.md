@@ -13,7 +13,7 @@ flask Api接口服务基础框架Demo （用户注册、登录、用户查询、
 
 1.3 创建venv虚拟环境后，再安装项目依赖包
 ``` shell
-  pip install -r requirement.txt -i https://pypi.douban.com/simple
+pip install -r requirement.txt -i https://pypi.douban.com/simple
 ```
 1.4 mysql文件详见flask_api_server/doc/api_server_data.sql
 
@@ -39,6 +39,7 @@ flask Api接口服务基础框架Demo （用户注册、登录、用户查询、
   + sql语句查询封装详见RawQueryHandle，可支持panadas
   + api接口响应状态码map映射详见response_code.py
   + token鉴权调用装饰器@login_required
+  + redis连接封装
 
 3 阿里云Linux服务器上基于venv虚拟环境：Flask + uwsgi + Systemctl 服务部署与配置
   + 1.创建flask-api-server.service服务管理脚本，具体如下
@@ -66,21 +67,20 @@ flask Api接口服务基础框架Demo （用户注册、登录、用户查询、
   RestartSec=15s
   ```
    
-  + 2.启动 flask-api-server 项目服务
-    + 重新加载所有服务配置，如下命令:
-    ``` shell
-    # 只要有.service 服务配置更新, 必须执行改命令才会生效
-    $ systemctl daemon-reload
-    ``` 
-    + 启动服务、赞同服务、重启服务、查看服务运行状态
-      ``` shell
-      # 服务状态或者查看日志等
-      $ sudo systemctl status flask-api-server.service
-      # 暂停服务
-      $ sudo systemctl stop flask-api-server.service
-      # 启动服务
-      $ sudo systemctl start flask-api-server.service
-      # 重启服务
-      $ sudo systemctl restart flask-api-server.service
-
-      ``` 
++ 2.启动 flask-api-server 项目服务
+  + 重新加载所有服务配置，如下命令:
+  ``` shell
+  # 只要有.service 服务配置更新, 必须执行改命令才会生效
+  $ systemctl daemon-reload
+  ``` 
+  + 启动服务、赞同服务、重启服务、查看服务运行状态
+  ``` shell
+  # 服务状态或者查看日志等
+  $ sudo systemctl status flask-api-server.service
+  # 暂停服务
+  $ sudo systemctl stop flask-api-server.service
+  # 启动服务
+  $ sudo systemctl start flask-api-server.service
+  # 重启服务
+  $ sudo systemctl restart flask-api-server.service
+  ```   

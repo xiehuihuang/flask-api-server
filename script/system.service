@@ -1,0 +1,14 @@
+[Unit]
+# 描述
+# /usr/lib/systemd/system
+Description= flask-api-server service daemon
+After=network.target
+
+[Service]
+# 服务启动的命令
+WorkingDirectory = /app/flask-api-server
+ExecStart=/app/flask-api-server/venv/bin/uwsgi --die-on-term --env SERVER_ENV=produce --ini /app/flask-api-server/conf/uwsgi.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=control-group
+Restart=on-failure
+RestartSec=15s
