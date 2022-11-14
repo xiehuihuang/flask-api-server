@@ -13,7 +13,7 @@ from flask import request, g
 
 from main.setting import db
 from main.util.common import request_data
-from main.util.mixin import RawQueryHandle, BaseViewMixin
+from main.util.mixin import RawQueryHandle, BaseViewMixin, GraphicsDataHandle
 from main.util.error import HttpResponseError
 
 logger = logging.getLogger(__name__)
@@ -201,7 +201,7 @@ class MetaView(object):
             raise e
 
 
-class MetaViewSet(MetaView, RawQueryHandle, BaseViewMixin):
+class MetaViewSet(MetaView, RawQueryHandle, BaseViewMixin, GraphicsDataHandle):
     decorators = ()
     resources = ""
     query_field = ()
